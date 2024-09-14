@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { Alert, StyleSheet, Text, TextInput, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import auth from "@react-native-firebase/auth";
 
 const loginScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState("");
@@ -9,19 +10,43 @@ const loginScreen = ({ navigation }: any) => {
   const onPressSignup = () => {
     navigation.navigate("Signup");
   };
+
+  const onPressLogin = async () => {
+    if (email && password) {
+      try {
+        const userFriend = await auth().signInWithEmailAndPassword(
+          email,
+          password
+        );
+        console.log(userFriend);
+      } catch (err: any) {
+        console.log(err);
+        Alert.alert(err.message);
+      }
+    } else {
+      Alert.alert("please fill all fields!");
+    }
+  };
   return (
     <View style={{ padding: 16 }}>
       <TextInput
+        onChangeText={(text) => {
+          setEmail(text);
+        }}
         placeholder="Email"
         keyboardType="numeric"
         style={styles.input}
       />
       <TextInput
+        onChangeText={(text) => {
+          setPassword(text);
+        }}
         placeholder="Password"
         keyboardType="numeric"
         style={styles.input}
+        secureTextEntry={true}
       />
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity onPress={onPressLogin} style={styles.button}>
         <Text style={{ color: "white", fontWeight: "bold" }}>Login</Text>
       </TouchableOpacity>
 

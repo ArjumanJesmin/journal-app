@@ -1,14 +1,24 @@
 import { useState } from "react";
 import { Alert, StyleSheet, Text, TextInput, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import auth from "@react-native-firebase/auth";
 
 const signupScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const onPressSignup = () => {
+  const onPressSignup = async () => {
     if (email && password) {
-      console.log("data");
+      try {
+        const userFriend = await auth().createUserWithEmailAndPassword(
+          email,
+          password
+        );
+        console.log(userFriend);
+      } catch (err: any) {
+        console.log(err);
+        Alert.alert(err.message);
+      }
     } else {
       Alert.alert("please fill all fields!");
     }
