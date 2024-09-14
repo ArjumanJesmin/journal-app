@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "849972543723",
+    "project_id": "journal-app-2ddab",
+    "storage_bucket": "journal-app-2ddab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:849972543723:android:8c821b7ff85370f059feae",
+        "android_client_info": {
+          "package_name": "com.arjuman.journal.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdPhO4dORVNEOZ5OSFo7XRQyeJl-4L6yE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
